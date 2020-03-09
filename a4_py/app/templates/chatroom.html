@@ -1,0 +1,30 @@
+{% extends 'skeleton.html' %}
+
+<div style="border:1px solid black">
+    {% block content %}
+        <h1>{{name}}</h1>
+        {% with msgs = out %}
+            {% if msgs.length != 0 %}
+                {% for msg in msgs %}
+                    {% if msg is not none %}
+                        <ul style="list-style-type:none">
+                        <li >> {{msg}}</li>
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+        {% endwith %}
+
+    {% endblock %}
+</div>
+
+{% block input %}
+    <form method="post" novalidate>
+        <p>
+            {{form.message(size=32, value="")}}
+        </p>
+        <p>{{form.send()}}</p>
+
+    </form>
+{% endblock %}

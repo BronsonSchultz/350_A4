@@ -1,0 +1,31 @@
+{% extends 'skeleton.html' %}
+
+{% block content %}
+    <h2>Choose a Chatroom or Create One!</h2>
+    {% with rs = form.rooms %}
+        {% if rs.length != 0 %}
+            {% for r in rs %}
+                {% if r != "" %}
+                    <ul style="list-style-type:none">
+                        <li><a href="chatroom/{{r}}">{{r}}</a></li>
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+    {% endwith %}
+
+
+{% endblock %}
+
+
+{% block input %}
+    <form method="post" novalidate>
+        <p>
+            New Room Name:
+            {{form.room_name(size=32, value="")}}
+        </p>
+        <p>{{form.create()}}</p>
+
+    </form>
+{% endblock %}
